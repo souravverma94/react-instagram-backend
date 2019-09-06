@@ -1,0 +1,24 @@
+{
+  "name": "userListApi",
+  "version": "1.0.0",
+  "description": "Rest Api Sample",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: No tests specified\" && exit 1"
+  },
+  "keywords": [
+    "Restful",
+    "Api"
+  ],
+  "author": "Sourav Verma",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.12"
+  }
+}
