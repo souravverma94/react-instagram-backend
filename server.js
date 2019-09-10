@@ -15,6 +15,7 @@ mongoose.connect("mongodb+srv://reactinsta:react2019@cluster0-xpbpo.mongodb.net/
 .catch((e)=>{
     console.log(e);
 });
+mongoose.set('useFindAndModify', false);
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
