@@ -38,7 +38,7 @@ exports.update_a_user = function (req, res) {
 };
 
 exports.add_follower = function (req, res) {
-  UserList.findOneAndUpdate({ username: req.params.username }, { $addToSet: { followers: req.body } }, { new: true }, function (err, user) {
+  UserList.findOneAndUpdate({ username: req.params.username }, { $addToSet: { followers: req.body.username } }, { new: true }, function (err, user) {
     if (err)
       res.send(err);
     res.json(user);
@@ -46,7 +46,7 @@ exports.add_follower = function (req, res) {
 };
 
 exports.remove_follower = function (req, res) {
-  UserList.findOneAndUpdate({ username: req.params.username }, { $pull: { followers: req.body } }, { new: true }, function (err, user) {
+  UserList.findOneAndUpdate({ username: req.params.username }, { $pull: { followers: req.body.username } }, { new: true }, function (err, user) {
     if (err)
       res.send(err);
     res.json(user);
@@ -54,7 +54,7 @@ exports.remove_follower = function (req, res) {
 };
 
 exports.add_following = function (req, res) {
-  UserList.findOneAndUpdate({ username: req.params.username }, { $addToSet: { following: req.body } }, { new: true }, function (err, user) {
+  UserList.findOneAndUpdate({ username: req.params.username }, { $addToSet: { following: req.body.username } }, { new: true }, function (err, user) {
     if (err)
       res.send(err);
     res.json(user);
@@ -62,7 +62,7 @@ exports.add_following = function (req, res) {
 };
 
 exports.remove_following = function (req, res) {
-  UserList.findOneAndUpdate({ username: req.params.username }, { $pull: { following: req.body } }, { new: true }, function (err, user) {
+  UserList.findOneAndUpdate({ username: req.params.username }, { $pull: { following: req.body.username } }, { new: true }, function (err, user) {
     if (err)
       res.send(err);
     res.json(user);
