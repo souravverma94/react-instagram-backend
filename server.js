@@ -6,6 +6,7 @@ mongoose = require('mongoose'),
 User = require('./api/models/userModel'),
 bodyParser = require('body-parser');
 
+var cors = require('cors');
 //mongoose instance connection url connection
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb+srv://reactinsta:react2019@cluster0-xpbpo.mongodb.net/test?retryWrites=true&w=majority")
@@ -17,6 +18,7 @@ mongoose.connect("mongodb+srv://reactinsta:react2019@cluster0-xpbpo.mongodb.net/
 });
 mongoose.set('useFindAndModify', false);
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
