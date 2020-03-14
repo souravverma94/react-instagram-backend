@@ -3,14 +3,14 @@ services:
   - docker
 
 script:
-  - docker build -t vermasourav/reactinsta-backend .
-  - docker images vermasourav/reactinsta-backend
+  - docker build -t registry.heroku.com/react-insta-backend/web . 
+  - docker images registry.heroku.com/react-insta-backend/web
 
 before_deploy:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin registry.heroku.com
 
 deploy:
   provided: script
-  script: docker push vermasourav/reactinsta-backend
+  script: docker push registry.heroku.com/react-insta-backend/web
   on:
     branch: master
