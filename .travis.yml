@@ -1,0 +1,16 @@
+sudo: required
+services:
+  - docker
+
+script:
+  - docker build -t vermasourav/reactinsta-backend .
+  - docker images vermasourav/reactinsta-backend
+
+before_deploy:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin registry.heroku.com
+
+deploy:
+  provided: script
+  script: docker push vermasourav/reactinsta-backend
+  on:
+    branch: master
