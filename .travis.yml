@@ -11,8 +11,12 @@ before_deploy:
 
 deploy:
   provided: script
-  script:
-    - docker push registry.heroku.com/react-insta-backend/web
-    - heroku container:release --app registry.heroku.com/react-insta-backend/web
+  script: docker push registry.heroku.com/react-insta-backend/web
+
+after_deploy:
+    - apk add --no-cache curl
+    - echo "Docker Image ID is $(HEROKU_APP)"
+    - |-
+      curl -X PATCH https://api.heroku.com/apps/react-insta-backend/web/formation --header "Content-Type: application/json" --header "Accept: application/vnd.heroku+json; version=3.docker-releases" --header "Authorization: Bearer ${HEROKU_TOKEN}" --data '{ "updates": [ { "type": "web", "docker_image": "'$(HEROKU_APP)'" } ] }'
   on:
     branch: master
